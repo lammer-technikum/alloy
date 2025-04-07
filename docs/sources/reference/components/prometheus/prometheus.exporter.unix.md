@@ -17,11 +17,26 @@ For more information on collectors, refer to the [`collectors-list`](#collectors
 
 You can specify multiple `prometheus.exporter.unix` components by giving them different labels.
 
-## Usage
+## Basic Usage
 
 ```alloy
 prometheus.exporter.unix "<LABEL>" {
 }
+```
+
+## Example Usage, if you need to customize the collecting
+
+```alloy
+prometheus.exporter.unix "system_data" {
+        enable_collectors = ["systemd", "cpu"]
+        systemd {
+          start_time = true
+        }
+        cpu {
+           info = true
+        }
+}
+
 ```
 
 ## Arguments
